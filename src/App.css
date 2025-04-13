@@ -1,0 +1,37 @@
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: #34a3ff;
+}
+
+#container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10%;
+
+  height: 50%;
+  width: 60%;
+  padding: 3%;
+ /* background-image: linear-gradient(
+    to right,
+    #be69eb 0%,
+    #e04f4f 50%,
+    #f0a21a 100%
+  );*/
+  background-color: #e7a22b;
+}
+
+#container form{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5%;
+}
+
+
