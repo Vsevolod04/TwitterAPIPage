@@ -12,12 +12,13 @@ main{
 #container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 10%;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 
-  height: 50%;
-  width: 60%;
-  padding: 3%;
+  height: 90%;
+  width: 80%;
+  padding-inline: 4%;
  /* background-image: linear-gradient(
     to right,
     #be69eb 0%,
@@ -34,4 +35,9 @@ main{
   gap: 5%;
 }
 
+#video{
+  border: solid black 1px;
+  height: 70%;
+  width: 90%;
+}
 
