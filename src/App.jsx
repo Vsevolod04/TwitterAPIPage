@@ -10,6 +10,7 @@ function App() {
   const [isBlocked, setBlock] = useState(false); //блокировка кнопки
   const [videosCount, setCount] = useState(0); //количество видео
   const [currentPage, setPage] = useState(0); //номер текущего видео
+  const [isError, setError] = useState(false);
 
   const blurHandler = (event) => {
     const val = event.target.value.trim();
@@ -57,13 +58,14 @@ function App() {
   const submitHandler = async (event) => {
     event.preventDefault();
     setBlock(true);
+    setError(false);
     const videos = await getVideos(keywords);
     if (videos == null || videos.items.length == 0) {
-      setKeywords("Ошибка при выполнении запроса");
-      setIds([]);
+      setVideos([]);
       setUrl(null);
       setCount(0);
       setPage(0);
+      setError(true);
     } else {
       const link =
         "https://www.youtube.com/embed/" + String(videos.items[0].id.videoId);
@@ -74,7 +76,7 @@ function App() {
       setUrl(link); //установка первого видео
       setVideos(videos.items);
     }
-    setTimeout(setBlock, 3000, false);
+    setTimeout(setBlock, 500, false);
   };
 
   return (
@@ -83,6 +85,7 @@ function App() {
         <div id="container">
           <form onSubmit={submitHandler}>
             <TextField
+              error={isError}
               type="text"
               variant="outlined"
               name="keywords"
@@ -91,13 +94,13 @@ function App() {
               value={keywords}
               onChange={changeHandler}
               onBlur={blurHandler}
-              helperText="Спецсимволы запрещены"
+              helperText={isError ? "Ошибка выполнения запроса!!!" : "Введите запрос длиной до 50 символов"}
               fullWidth
               autoFocus
               required
             />
             <Button type="submit" variant="contained" disabled={isBlocked}>
-              Получить видео
+              {isBlocked ? "Загрузка..." : "Получить видео"}
             </Button>
           </form>
           <iframe
